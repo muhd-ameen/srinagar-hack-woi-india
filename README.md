@@ -98,6 +98,12 @@ grouped by `tier`. While the list is empty, the site shows a "Want to partner?" 
 Put the file in `public/logos/` and set `logo: "/logos/your-file.svg"` for that organiser in
 `content/team.ts`. While `logo` is `null`, the name is shown as text.
 
+## Link preview image
+
+When the link is pasted into WhatsApp, LinkedIn, X or Slack, the preview shows
+`app/opengraph-image.jpg`. To change it, replace that file with a 1200 × 630 JPEG under 300 KB
+(WhatsApp skips large images) and update the description in `app/opengraph-image.alt.txt`.
+
 ## Swapping photos
 
 See `public/images/README.md`. Short version: replace the file using the same name, then update
@@ -124,9 +130,7 @@ not receive submissions there.
 
 **Anywhere else (Netlify, Cloudflare Pages, S3, Nginx):** run `npm run build` and upload the `out/`
 folder. Pages are written as `rules.html`, `code-of-conduct.html` etc., so configure the host to
-serve `/rules` from `rules.html` (most static hosts do this already). The social preview image is
-at `/opengraph-image` with no file extension, so if your host guesses content types from the
-extension, set `image/png` for that path.
+serve `/rules` from `rules.html` (most static hosts do this already).
 
 ## Design rules (so the site stays consistent)
 

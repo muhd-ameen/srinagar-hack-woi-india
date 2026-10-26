@@ -4,10 +4,3 @@
 [build]
   command = "npm run build"
   publish = "out"
-
-# The Open Graph image is exported without a file extension. Tell crawlers it's a PNG
-# so link previews (WhatsApp, LinkedIn, X) show it.
-[[headers]]
-  for = "/opengraph-image"
-  [headers.values]
-    Content-Type = "image/png"
