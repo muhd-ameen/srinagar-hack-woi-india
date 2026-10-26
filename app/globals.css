@@ -1,0 +1,160 @@
+@import "tailwindcss";
+
+/* Design tokens. Every colour on the site comes from here.
+   Light theme. Contrast on --color-bg: fg 19.7:1, muted 6.1:1, secondary 9.8:1.
+   --color-accent (saffron gold) is 1.8:1 on white, too light for text, so it is only used
+   as a fill: the primary button, small dots, and the number in the indigo prize box. */
+@theme {
+  --color-bg: #ffffff;
+  --color-surface: #f5f4f1;
+  --color-line: #e4e2dd;
+  --color-fg: #0b0b0b;
+  --color-muted: #66625b;
+  --color-accent: #f5b70a;
+  --color-secondary: #393d7e;
+
+  --font-sans: var(--font-poppins), system-ui, sans-serif;
+
+  --container-page: 80rem;
+  --container-prose: 40rem;
+
+  --tracking-label: 0.18em;
+  --tracking-tightest: -0.045em;
+}
+
+@layer base {
+  html {
+    background-color: var(--color-bg);
+    color: var(--color-fg);
+    scroll-padding-top: 5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background-color: var(--color-secondary);
+    color: var(--color-bg);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-secondary);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+}
+
+@layer components {
+  /* Small uppercase labels, e.g. "03 / TRACKS". */
+  .label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--color-secondary);
+  }
+
+  .label-muted {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+
+  /* Underline that draws in on hover. */
+  .link-underline {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.3em;
+    text-decoration-color: var(--color-line);
+    transition: text-decoration-color 150ms ease, color 150ms ease;
+  }
+  .link-underline:hover {
+    text-decoration-color: var(--color-secondary);
+  }
+
+  /* Light film grain for photos (Photo grain prop). Monochrome, no colour. Not for illustrations. */
+  .grain {
+    position: relative;
+    isolation: isolate;
+  }
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.12;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+
+  /* Edge fades that blend an image into the page background. These are masks
+     (transparency), not colour overlays: the image itself is never tinted.
+     Every image on the page blends in this way. */
+  .fade-y {
+    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 14%, #000 86%, transparent);
+    mask-image: linear-gradient(to bottom, transparent, #000 14%, #000 86%, transparent);
+  }
+  /* All four edges: the image reads as part of the background, with no frame. */
+  .fade-edges {
+    -webkit-mask-image:
+      linear-gradient(to bottom, transparent, #000 16%, #000 84%, transparent),
+      linear-gradient(to right, transparent, #000 16%, #000 84%, transparent);
+    -webkit-mask-composite: source-in;
+    mask-image:
+      linear-gradient(to bottom, transparent, #000 16%, #000 84%, transparent),
+      linear-gradient(to right, transparent, #000 16%, #000 84%, transparent);
+    mask-composite: intersect;
+  }
+  .fade-b {
+    -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent);
+    mask-image: linear-gradient(to bottom, #000 72%, transparent);
+  }
+  @media (min-width: 64rem) {
+    .lg\:fade-b {
+      -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent);
+      mask-image: linear-gradient(to bottom, #000 72%, transparent);
+    }
+  }
+
+  /* Fade up once on scroll. Only applies when JS is running (see layout). */
+  .js [data-reveal] {
+    opacity: 0;
+    transform: translateY(8px);
+    transition:
+      opacity 600ms ease,
+      transform 600ms ease;
+  }
+  .js [data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0ms !important;
+    animation-duration: 0ms !important;
+  }
+  .js [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+}

@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+    <title>Forms</title>
+  </head>
+  <body>
+    <!--
+      Netlify Forms reads this file at deploy time to register the "waitlist" form.
+      The real form is components/WaitlistForm.tsx, which posts here.
+      Keep the form name and field names in sync with that component.
+    -->
+    <form name="waitlist" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="waitlist" />
+      <input name="bot-field" />
+      <input name="email" type="email" />
+    </form>
+  </body>
+</html>
