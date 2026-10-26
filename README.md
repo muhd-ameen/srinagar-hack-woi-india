@@ -111,8 +111,8 @@ the alt text and caption in `content/images.ts`.
 
 ## Before launch
 
-- Set the real domain in `site.url` (`content/site.ts`). It's used for canonical links, the
-  sitemap and social previews.
+- Connect the custom domain in Netlify (**Domain management**). `site.url` picks it up on the
+  next build, so canonical links, the sitemap and link previews switch over on their own.
 - Search the code for `TODO` and confirm each one (team size, food, travel, IP terms, rules).
 - Replace every placeholder photo.
 - Add social links in `site.socials`. Empty ones are hidden.

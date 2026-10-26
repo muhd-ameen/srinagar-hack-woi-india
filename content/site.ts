@@ -9,7 +9,9 @@ export const site = {
     "A free hackathon in Srinagar for students, developers, designers and founders building technology for real problems in Jammu & Kashmir. November 2026.",
 
   // Used for canonical links, the sitemap and Open Graph tags. No trailing slash.
-  url: "https://buildforkashmir.in", // TODO confirm the final domain
+  // On Netlify, URL is set at build time to the site's main address (the custom domain once
+  // one is connected), so link previews always point at a live address.
+  url: process.env.URL ?? "https://build-for-kashmir-hackathon.netlify.app",
 
   organiser: "WOI India",
   programme: "The Great Indian Startup Month",
