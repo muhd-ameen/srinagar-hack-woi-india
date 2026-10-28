@@ -18,31 +18,19 @@ export type Organiser = {
   logo: Logo | null;
 };
 
+// Shown in this order.
 export const organisers: Organiser[] = [
   {
-    role: "Organised by",
-    name: "WOI India",
+    role: "Supported by",
+    name: "Government of Jammu and Kashmir",
     about:
-      "WOI India runs hackathons and startup programmes that put builders in front of real problems. Build for Kashmir is its first edition in the valley.",
-    href: "https://woiindia.com",
+      "Government departments in J&K are working with J&K EDI on the problem statements, so teams build for problems the departments want solved.",
+    href: "https://jk.gov.in",
     logo: {
-      src: "/logos/woi-logo-onLight.png",
-      alt: "WOI India logo",
-      width: 600,
-      height: 224,
-    },
-  },
-  {
-    role: "Part of",
-    name: "The Great Indian Startup Month",
-    about:
-      "A national startup campaign that runs through November 2026. Build for Kashmir is its Srinagar chapter.",
-    href: "https://thegreatindianstartupmonth.com",
-    logo: {
-      src: "/logos/gism-badge.png",
-      alt: "The Great Indian Startup Month, November 2026 campaign badge",
-      width: 560,
-      height: 670,
+      src: "/logos/jk-government.png",
+      alt: "Government of Jammu and Kashmir emblem",
+      width: 201,
+      height: 320,
     },
   },
   {
@@ -56,6 +44,32 @@ export const organisers: Organiser[] = [
       alt: "Jammu & Kashmir Entrepreneurship Development Institute logo",
       width: 560,
       height: 431,
+    },
+  },
+  {
+    role: "Part of",
+    name: "The Great Indian Startup Month",
+    about:
+      "A national startup campaign that runs through November 2026. The Great Indian Hackathon – Kashmir Edition is its Srinagar chapter.",
+    href: "https://thegreatindianstartupmonth.com",
+    logo: {
+      src: "/logos/gism-badge.png",
+      alt: "The Great Indian Startup Month, November 2026 campaign badge",
+      width: 560,
+      height: 670,
+    },
+  },
+  {
+    role: "Organised by",
+    name: "WOI India",
+    about:
+      "WOI India runs hackathons and startup programmes that put builders in front of real problems. The Great Indian Hackathon – Kashmir Edition is its first edition in the valley.",
+    href: "https://woiindia.com",
+    logo: {
+      src: "/logos/woi-logo-onLight.png",
+      alt: "WOI India logo",
+      width: 600,
+      height: 224,
     },
   },
 ];

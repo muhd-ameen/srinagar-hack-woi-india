@@ -1,6 +1,6 @@
-# Build for Kashmir
+# Great Indian Hackathon – Kashmir Edition
 
-The website for the Build for Kashmir Hackathon, organised by WOI India as part of
+The website for the Great Indian Hackathon – Kashmir Edition, organised by WOI India as part of
 The Great Indian Startup Month, with J&K EDI as institutional partner. Srinagar, November 2026.
 
 Built with Next.js (App Router, static export), TypeScript and Tailwind CSS. The only font is Poppins.

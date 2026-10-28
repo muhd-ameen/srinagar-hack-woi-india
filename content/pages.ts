@@ -19,7 +19,7 @@ export const codeOfConduct: ProsePage = {
   label: "Code of Conduct",
   title: "Code of Conduct.",
   intro:
-    "Build for Kashmir should be a good experience for everyone who comes, whatever their background, skill level or reason for being there. This code applies to participants, mentors, judges, volunteers, partners and organisers, at the venue, online and at any related event.",
+    "The Great Indian Hackathon – Kashmir Edition should be a good experience for everyone who comes, whatever their background, skill level or reason for being there. This code applies to participants, mentors, judges, volunteers, partners and organisers, at the venue, online and at any related event.",
   updated: "Last updated October 2026",
   sections: [
     {
@@ -70,7 +70,7 @@ export const rules: ProsePage = {
   label: "Rules",
   title: "Rules.",
   intro:
-    "These are the rules for Build for Kashmir. If anything is added or changed, we'll update this page and tell registered participants first.",
+    "These are the rules for the Great Indian Hackathon – Kashmir Edition. If anything is added or changed, we'll update this page and tell registered participants first.",
   updated: "Last updated October 2026",
   sections: [
     {

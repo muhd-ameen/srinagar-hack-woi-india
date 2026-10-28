@@ -2,8 +2,8 @@
 // Anything set to null shows a "coming soon" line on the site instead.
 
 export const site = {
-  name: "Build for Kashmir",
-  fullName: "Build for Kashmir Hackathon",
+  name: "Great Indian Hackathon",
+  fullName: "Great Indian Hackathon – Kashmir Edition",
   tagline: "Ideas from the valley, built for the valley.",
   description:
     "A free hackathon in Srinagar for students, developers, designers and founders building technology for real problems in Jammu & Kashmir. November 2026.",
@@ -50,6 +50,9 @@ export const site = {
     note: "We'll email you once, when registrations open. No spam.",
     success: "You're on the list. We'll email you when registrations open.",
     error: "That didn't go through. Please try again in a moment.",
+    // Only shown when running `npm run dev`. Netlify Forms needs the deployed site.
+    devError:
+      "Local preview: Netlify Forms only receives submissions on the deployed Netlify site, so this can't be sent from localhost.",
     // Hidden spam trap. People never see it; bots that fill it in are dropped by Netlify.
     honeypotLabel: "Leave this empty",
   },
@@ -96,8 +99,8 @@ export const campaignLink = {
 export const copy = {
   hero: {
     label: "WOI India · The Great Indian Startup Month",
-    headline: ["Build for", "Kashmir."],
-    kicker: "Biggest hackathon in the valley.",
+    headline: ["Great Indian", "Hackathon."],
+    kicker: "Kashmir Edition.",
     secondaryCta: { label: "See the tracks", href: "#tracks" },
   },
   about: {
@@ -106,7 +109,7 @@ export const copy = {
     href: "/about",
     more: "About the event and organisers",
     description:
-      "What Build for Kashmir is, who it's for, and who's organising it: WOI India, The Great Indian Startup Month and J&K EDI.",
+      "What the Great Indian Hackathon – Kashmir Edition is, who it's for, and who's organising it: WOI India, The Great Indian Startup Month and J&K EDI.",
     body: [
       "A free hackathon in Srinagar where teams build working prototypes for everyday problems in J&K, like apple growers who can't see a fair price, artisans who can't prove their Pashmina is real, and villages cut off every winter. Anyone who wants to build something useful is welcome, coder or not.",
     ],
@@ -123,7 +126,7 @@ export const copy = {
     href: "/tracks",
     more: "See what each track covers",
     description:
-      "The seven Build for Kashmir tracks: horticulture, tourism, handicrafts, public services, environment, healthcare and youth employment.",
+      "The seven Great Indian Hackathon – Kashmir Edition tracks: horticulture, tourism, handicrafts, public services, environment, healthcare and youth employment.",
     note: "The detailed problem statements are being written with J&K EDI and government departments.",
   },
   format: {
@@ -133,7 +136,7 @@ export const copy = {
     href: "/how-it-works",
     more: "Full format, workshops and judging",
     description:
-      "How Build for Kashmir works: six steps from picking a problem to the final demo, the workshops and mentorship, and how projects are judged.",
+      "How the Great Indian Hackathon – Kashmir Edition works: six steps from picking a problem to the final demo, the workshops and mentorship, and how projects are judged.",
     intro:
       "Six steps from picking a problem to standing in front of the jury. You won't be building alone at any point.",
     programmeLabel: "Programme",
@@ -153,7 +156,7 @@ export const copy = {
     label: "Schedule",
     heading: "Schedule.",
     href: "/schedule",
-    description: "The Build for Kashmir event schedule, day by day.",
+    description: "The Great Indian Hackathon – Kashmir Edition schedule, day by day.",
     empty: "The full schedule goes live once dates are confirmed.",
   },
   judging: {
@@ -183,11 +186,18 @@ export const copy = {
     href: "/faq",
     more: "All questions",
     description:
-      "Answers on who can take part, cost, teams, venue, food, travel, ownership and what happens after Build for Kashmir.",
+      "Answers on who can take part, cost, teams, venue, food, travel, ownership and what happens after the Great Indian Hackathon.",
     ask: "Didn't find your answer? Get in touch with WOI India through",
   },
   finalCta: {
     heading: "Got an idea for Kashmir? Come build it.",
+    // Trimmed from public/logos/gism-campaign-logo.png, which has wide empty margins.
+    image: {
+      src: "/logos/gism-campaign.png",
+      alt: "The Great Indian Startup Month, November 2026, badge with WOI India, DPIIT #startupindia and media partner YourStory",
+      width: 900,
+      height: 1087,
+    },
   },
   footer: {
     linksHeading: "Links",

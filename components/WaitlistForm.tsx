@@ -10,6 +10,8 @@ type Props = {
 
 type Status = "idle" | "sending" | "done" | "error";
 
+const isDev = process.env.NODE_ENV === "development";
+
 // Email waitlist, handled by Netlify Forms. Netlify finds the form through the static copy in
 // public/__forms.html at deploy time, and this component posts to that file.
 // Without JavaScript the form still posts normally and Netlify records it.
@@ -88,7 +90,7 @@ export function WaitlistForm({ id, className = "" }: Props) {
             {waitlist.note}
           </p>
           <p role="status" aria-live="polite" className="mt-2 text-sm text-fg empty:hidden">
-            {status === "error" ? waitlist.error : ""}
+            {status === "error" ? (isDev ? waitlist.devError : waitlist.error) : ""}
           </p>
         </form>
       )}
