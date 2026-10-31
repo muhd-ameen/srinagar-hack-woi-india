@@ -114,7 +114,7 @@ export const copy = {
       "A free hackathon in Srinagar where teams build working prototypes for everyday problems in J&K, like apple growers who can't see a fair price, artisans who can't prove their Pashmina is real, and villages cut off every winter. Anyone who wants to build something useful is welcome, coder or not.",
     ],
     stats: [
-      { value: "₹2L", label: "Prize pool" },
+      { value: "₹5L", label: "Prize pool" },
       { value: "7", label: "Tracks" },
       { value: "1,500+", label: "Attendees expected" },
       { value: "6 months", label: "At Startup Park, Bengaluru" },
@@ -148,7 +148,7 @@ export const copy = {
     href: "/prizes",
     more: "Prize details and what happens after",
     description:
-      "A ₹2,00,000 prize pool, mentorship and workspace for winners, a month of mentorship for every team, and what stays in J&K after the event.",
+      "A ₹5,00,000 prize pool, mentorship and workspace for winners, a month of mentorship for every team, and what stays in J&K after the event.",
     winnersLabel: "For winning teams",
     everyoneLabel: "For every team",
   },

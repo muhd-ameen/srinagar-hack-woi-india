@@ -130,7 +130,7 @@ export const rules: ProsePage = {
     {
       heading: "Prizes",
       list: [
-        "A ₹2 lakh prize pool, plus AI tool credits from technology partners.",
+        "A ₹5 lakh prize pool, plus AI tool credits from technology partners.",
         "Three months of Startup School mentorship and six months of workspace at Startup Park, Bengaluru, for winning teams.",
         "One month of Startup School mentorship for every participating team.",
         // TODO confirm prize split and payout process

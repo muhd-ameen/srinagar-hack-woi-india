@@ -25,7 +25,7 @@ const startupSchool: Logo = {
 
 export const prizes: Prize[] = [
   {
-    value: "₹2,00,000",
+    value: "₹5,00,000",
     title: "Prize pool",
     detail: "Shared between the winning teams, plus AI tool credits from technology partners.",
   },
