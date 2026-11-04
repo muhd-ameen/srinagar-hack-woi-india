@@ -4,6 +4,8 @@
 export const site = {
   name: "Great Indian Hackathon",
   fullName: "Great Indian Hackathon – Kashmir Edition",
+  edition: "Kashmir Edition",
+  shortName: "TGIH",
   tagline: "Ideas from the valley, built for the valley.",
   description:
     "A free hackathon in Srinagar for students, developers, designers and founders building technology for real problems in Jammu & Kashmir. November 2026.",
@@ -200,6 +202,7 @@ export const copy = {
     },
   },
   footer: {
+    byLabel: "Organised by",
     linksHeading: "Links",
     socialsHeading: "Follow",
     pages: [

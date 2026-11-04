@@ -1,54 +1,77 @@
 @import "tailwindcss";
 
-/* Design tokens. Every colour on the site comes from here.
-   Light theme. Contrast on --color-bg: fg 19.7:1, muted 6.1:1, secondary 9.8:1.
-   --color-accent (saffron gold) is 1.8:1 on white, too light for text, so it is only used
-   as a fill: the primary button, small dots, and the number in the indigo prize box. */
-@theme {
-  --color-bg: #ffffff;
-  --color-surface: #f5f4f1;
-  --color-line: #e4e2dd;
-  --color-fg: #0b0b0b;
-  --color-muted: #66625b;
-  --color-accent: #f5b70a;
-  --color-secondary: #393d7e;
+/* TGIH brand tokens, from the Brand Identity Guidelines v1.0 moodboard. Every colour on the
+   site comes from here.
 
-  --font-sans: var(--font-poppins), system-ui, sans-serif;
+   Brand palette (fills): sky, deep, sun, cream, coral, green. Ink is the outline colour.
+   Text is ink on every fill except deep blue, where it's cream.
+   Contrast: ink on cream 17:1, sky 9.5:1, sun 18:1, coral 6.6:1, green 7.4:1; cream on deep 6.2:1.
+   Coral and green are fills only, never text on cream.
+
+   The semantic tokens (bg, fg, muted, line) are swapped by the .tone-* classes below, so a
+   section on deep blue gets cream text without every component knowing about it. */
+@theme {
+  --color-sky: #12c6e9;
+  --color-deep: #1051c7;
+  --color-sun: #fff000;
+  --color-cream: #fff1d6;
+  --color-coral: #ff5b68;
+  --color-green: #00b478;
+  --color-ink: #111111;
+  --color-paper: #fffaf0;
+
+  --color-bg: var(--color-cream);
+  --color-surface: var(--color-paper);
+  --color-line: var(--color-ink);
+  --color-fg: var(--color-ink);
+  --color-muted: #4f4a40;
+  --color-accent: var(--color-sun);
+  --color-secondary: var(--color-deep);
+
+  /* Display: Mestiza Black in the guidelines. Ultra stands in until we have the licensed
+     web font files; swap --font-ultra for the local font in app/layout.tsx. */
+  --font-display: var(--font-ultra), "Rockwell Extra Bold", Georgia, serif;
+  /* Sub / body: Helvetica Neue, as in the guidelines. */
+  --font-sans: "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
+
+  --shadow-hard-sm: 3px 3px 0 0 var(--color-ink);
+  --shadow-hard: 5px 5px 0 0 var(--color-ink);
+  --shadow-hard-lg: 8px 8px 0 0 var(--color-ink);
 
   --container-page: 80rem;
   --container-prose: 40rem;
 
-  --tracking-label: 0.18em;
-  --tracking-tightest: -0.045em;
+  --tracking-label: 0.08em;
+  --tracking-tightest: -0.02em;
 }
 
 @layer base {
   html {
     background-color: var(--color-bg);
     color: var(--color-fg);
-    scroll-padding-top: 5rem;
+    scroll-padding-top: 5.5rem;
     -webkit-text-size-adjust: 100%;
   }
 
   body {
     background-color: var(--color-bg);
     font-family: var(--font-sans);
-    font-weight: 300;
-    line-height: 1.6;
+    font-weight: 400;
+    line-height: 1.55;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: clip;
   }
 
   ::selection {
-    background-color: var(--color-secondary);
-    color: var(--color-bg);
+    background-color: var(--color-sun);
+    color: var(--color-ink);
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-secondary);
+    outline: 3px solid var(--color-deep);
     outline-offset: 3px;
-    border-radius: 2px;
+    border-radius: 6px;
   }
 
   @media (prefers-reduced-motion: no-preference) {
@@ -59,90 +82,232 @@
 }
 
 @layer components {
-  /* Small uppercase labels, e.g. "03 / TRACKS". */
-  .label {
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: var(--tracking-label);
-    text-transform: uppercase;
-    color: var(--color-secondary);
+  /* Section tones. Each sets the background and re-points the text tokens. */
+  .tone-cream {
+    background-color: var(--color-cream);
+  }
+  .tone-paper {
+    background-color: var(--color-paper);
+  }
+  .tone-sky {
+    background-color: var(--color-sky);
+    --color-bg: var(--color-sky);
+    --color-muted: #163944;
+  }
+  .tone-sun {
+    background-color: var(--color-sun);
+    --color-bg: var(--color-sun);
+    --color-muted: #3f3c1a;
+  }
+  .tone-deep {
+    background-color: var(--color-deep);
+    --color-bg: var(--color-deep);
+    --color-fg: var(--color-cream);
+    --color-muted: #dce6fb;
+    color: var(--color-cream);
   }
 
+  /* Backgrounds from the pattern system: a pixel grid on sky, a dot grid on sun. */
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, rgb(255 255 255 / 0.22) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(255 255 255 / 0.22) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  .bg-dots {
+    background-image: radial-gradient(circle, var(--color-green) 1.6px, transparent 2px);
+    background-size: 22px 22px;
+  }
+  /* Line the pattern inside a <Wave> up with the section below it (wave is 32px, 48px from md). */
+  .wave.bg-dots {
+    background-position: 0 10px;
+  }
+  @media (min-width: 48rem) {
+    .wave.bg-grid {
+      background-position: 0 16px;
+    }
+    .wave.bg-dots {
+      background-position: 0 4px;
+    }
+  }
+  .bg-dots-ink {
+    background-image: radial-gradient(circle, rgb(17 17 17 / 0.16) 1.4px, transparent 1.8px);
+    background-size: 20px 20px;
+  }
+
+  /* Chunky card: ink outline and a hard offset shadow. Always ink text, whatever the tone
+     around it. Add a fill-* class for a colour other than paper. */
+  .card {
+    --color-fg: var(--color-ink);
+    --color-muted: #4f4a40;
+    --color-bg: var(--color-paper);
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    border: 3px solid var(--color-ink);
+    border-radius: 1.25rem;
+    box-shadow: var(--shadow-hard);
+  }
+  .fill-cream {
+    background-color: var(--color-cream);
+    --color-bg: var(--color-cream);
+  }
+  .fill-sky,
+  .fill-sun,
+  .fill-coral,
+  .fill-green {
+    --color-muted: rgb(17 17 17 / 0.82);
+  }
+  .fill-sky {
+    background-color: var(--color-sky);
+    --color-bg: var(--color-sky);
+  }
+  .fill-sun {
+    background-color: var(--color-sun);
+    --color-bg: var(--color-sun);
+  }
+  .fill-coral {
+    background-color: var(--color-coral);
+    --color-bg: var(--color-coral);
+  }
+  .fill-green {
+    background-color: var(--color-green);
+    --color-bg: var(--color-green);
+  }
+  .fill-deep {
+    background-color: var(--color-deep);
+    --color-bg: var(--color-deep);
+    --color-fg: var(--color-cream);
+    --color-muted: #dce6fb;
+    color: var(--color-cream);
+  }
+
+  /* Display type: Mestiza Black (Ultra for now). */
+  .display {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: var(--tracking-tightest);
+  }
+
+  /* Display text with the logo's treatment: ink outline and a hard drop shadow. */
+  .display-outline {
+    -webkit-text-stroke: 0.12em var(--color-ink);
+    paint-order: stroke fill;
+    text-shadow: 0.06em 0.08em 0 var(--color-ink);
+  }
+
+  /* Small labels, e.g. "TRACKS". */
+  .label {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--color-fg);
+  }
   .label-muted {
-    font-size: 0.75rem;
-    font-weight: 500;
+    font-size: 0.8125rem;
+    font-weight: 700;
     letter-spacing: var(--tracking-label);
     text-transform: uppercase;
     color: var(--color-muted);
   }
 
-  /* Underline that draws in on hover. */
+  /* Sticker tag, like the slide numbers in the guidelines. */
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 2.5px solid var(--color-ink);
+    border-radius: 0.75rem;
+    background-color: var(--color-sun);
+    color: var(--color-ink);
+    padding: 0.3rem 0.75rem;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    line-height: 1.2;
+    box-shadow: var(--shadow-hard-sm);
+  }
+
+  /* Pressable button: lifts on hover, presses flat on click. */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border: 3px solid var(--color-ink);
+    border-radius: 0.875rem;
+    background-color: var(--color-sun);
+    color: var(--color-ink);
+    font-weight: 700;
+    white-space: nowrap;
+    box-shadow: var(--shadow-hard);
+    transition:
+      transform 120ms ease,
+      box-shadow 120ms ease,
+      background-color 120ms ease;
+  }
+  .btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 7px 7px 0 0 var(--color-ink);
+  }
+  .btn:active {
+    transform: translate(5px, 5px);
+    box-shadow: 0 0 0 0 var(--color-ink);
+  }
+  .btn:disabled {
+    cursor: not-allowed;
+    background-color: var(--color-paper);
+    color: #4f4a40;
+    box-shadow: none;
+    transform: none;
+  }
+
   .link-underline {
     text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 0.3em;
-    text-decoration-color: var(--color-line);
-    transition: text-decoration-color 150ms ease, color 150ms ease;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.25em;
+    text-decoration-color: currentColor;
+    transition:
+      text-decoration-color 150ms ease,
+      background-color 150ms ease;
   }
   .link-underline:hover {
-    text-decoration-color: var(--color-secondary);
-  }
-
-  /* Light film grain for photos (Photo grain prop). Monochrome, no colour. Not for illustrations. */
-  .grain {
-    position: relative;
-    isolation: isolate;
-  }
-  .grain::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    opacity: 0.12;
-    mix-blend-mode: overlay;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-  }
-
-  /* Edge fades that blend an image into the page background. These are masks
-     (transparency), not colour overlays: the image itself is never tinted.
-     Every image on the page blends in this way. */
-  .fade-y {
-    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 14%, #000 86%, transparent);
-    mask-image: linear-gradient(to bottom, transparent, #000 14%, #000 86%, transparent);
-  }
-  /* All four edges: the image reads as part of the background, with no frame. */
-  .fade-edges {
-    -webkit-mask-image:
-      linear-gradient(to bottom, transparent, #000 16%, #000 84%, transparent),
-      linear-gradient(to right, transparent, #000 16%, #000 84%, transparent);
-    -webkit-mask-composite: source-in;
-    mask-image:
-      linear-gradient(to bottom, transparent, #000 16%, #000 84%, transparent),
-      linear-gradient(to right, transparent, #000 16%, #000 84%, transparent);
-    mask-composite: intersect;
-  }
-  .fade-b {
-    -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent);
-    mask-image: linear-gradient(to bottom, #000 72%, transparent);
-  }
-  @media (min-width: 64rem) {
-    .lg\:fade-b {
-      -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent);
-      mask-image: linear-gradient(to bottom, #000 72%, transparent);
-    }
+    background-color: var(--color-sun);
+    color: var(--color-ink);
   }
 
   /* Fade up once on scroll. Only applies when JS is running (see layout). */
   .js [data-reveal] {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(10px);
     transition:
-      opacity 600ms ease,
-      transform 600ms ease;
+      opacity 500ms ease,
+      transform 500ms ease;
   }
   .js [data-reveal].is-visible {
     opacity: 1;
     transform: none;
+  }
+
+  /* Slow bob for the floating pixel shapes. */
+  @media (prefers-reduced-motion: no-preference) {
+    .float {
+      animation: float 5s ease-in-out infinite;
+    }
+    .float-delay {
+      animation-delay: -2.5s;
+    }
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
   }
 }
 

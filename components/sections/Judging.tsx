@@ -3,21 +3,23 @@ import { criteria } from "@/content/judging";
 import { Section } from "../Section";
 import { SectionHeading } from "../SectionHeading";
 
+const fills = ["fill-sky", "fill-coral", "fill-green", "fill-sun", "fill-cream"];
+
 export function Judging() {
   return (
-    <Section id="judging">
+    <Section id="judging" tone="cream">
       <SectionHeading id="judging" label={copy.judging.label} heading={copy.judging.heading} />
 
-      <div className="mt-14 grid grid-cols-12 gap-x-6 md:mt-20 lg:gap-x-8">
-        <ol className="col-span-12 border-t border-line lg:col-span-9 lg:col-start-4">
+      <div className="mt-12 md:mt-16">
+        <ol className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {criteria.map((criterion, i) => (
-            <li key={criterion} className="flex items-baseline gap-6 border-b border-line py-5 md:gap-10 md:py-6" data-reveal>
-              <span className="label w-6 shrink-0">{String(i + 1).padStart(2, "0")}</span>
-              <span className="text-xl leading-snug font-normal md:text-2xl">{criterion}</span>
+            <li key={criterion} className={`card flex flex-col gap-6 p-5 ${fills[i % fills.length]}`} data-reveal>
+              <span className="display text-3xl">{String(i + 1).padStart(2, "0")}</span>
+              <span className="text-lg leading-snug font-bold">{criterion}</span>
             </li>
           ))}
         </ol>
-        <p className="col-span-12 mt-8 max-w-[65ch] text-base text-muted md:text-lg lg:col-span-9 lg:col-start-4">
+        <p className="mt-10 max-w-[65ch] text-lg text-muted">
           {copy.judging.jury}
         </p>
       </div>

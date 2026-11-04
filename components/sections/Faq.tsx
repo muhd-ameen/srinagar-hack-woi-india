@@ -10,18 +10,18 @@ const summaryCount = 4;
 
 export function Faq({ number, summary, level = 2 }: SectionVariant) {
   return (
-    <Section id="faq" first={level === 1}>
+    <Section id="faq" tone="cream" first={level === 1}>
       <SectionHeading id="faq" number={number} level={level} label={copy.faq.label} heading={copy.faq.heading} />
 
-      <div className="mt-14 grid grid-cols-12 gap-x-6 md:mt-20 lg:gap-x-8">
-        <div className="col-span-12 lg:col-span-9 lg:col-start-4">
+      <div className="mt-12 grid grid-cols-12 gap-x-6 md:mt-16 lg:gap-x-8">
+        <div className="col-span-12 lg:col-span-10">
           <FaqList items={summary ? faqs.slice(0, summaryCount) : faqs} />
           {summary ? (
             <MoreLink href={copy.faq.href} label={copy.faq.more} className="mt-8" />
           ) : (
-            <p className="mt-8 text-base text-muted">
+            <p className="mt-10 text-lg text-muted">
               {copy.faq.ask}{" "}
-              <a href={site.links.woi.href} className="link-underline text-fg">
+              <a href={site.links.woi.href} className="link-underline font-bold text-fg">
                 {site.links.woi.label}
               </a>
               .

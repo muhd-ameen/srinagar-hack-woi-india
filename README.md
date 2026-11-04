@@ -3,7 +3,23 @@
 The website for the Great Indian Hackathon – Kashmir Edition, organised by WOI India as part of
 The Great Indian Startup Month, with J&K EDI as institutional partner. Srinagar, November 2026.
 
-Built with Next.js (App Router, static export), TypeScript and Tailwind CSS. The only font is Poppins.
+Built with Next.js (App Router, static export), TypeScript and Tailwind CSS.
+
+## Brand
+
+The look follows the TGIH Brand Identity Guidelines v1.0 (`docs/brand/moodboard-v1.png`).
+
+- **Colours** live as tokens in `app/globals.css`: sky `#12C6E9`, deep blue `#1051C7`, sun yellow
+  `#FFF000`, cream `#FFF1D6`, coral `#FF5B68`, green `#00B478`, plus ink `#111111` for outlines.
+  Text is ink on every fill except deep blue (cream). Coral and green are never text colours.
+- **Type:** display headings use Mestiza Black in the guidelines. Until we have the licensed web
+  font, Ultra (Google Fonts) stands in; swap it in `app/layout.tsx`. Body text is Helvetica Neue.
+- **Building blocks:** `.card` (ink outline + hard shadow), `.btn`, `.tag`, `.tone-*` section
+  backgrounds (`sky` grid, `sun` dots, `deep`, `cream`, `paper`), and `<Wave>` section edges.
+- **Graphics** in `components/brand/`: logo lockup, app icon, monitor illustration and pixel
+  shapes. The logo, app icon and monitor are drawn from the moodboard as placeholders; replace them
+  with the official artwork files when available. `app/icon.svg`, `app/icon.png`,
+  `app/apple-icon.png` and `app/opengraph-image.jpg` are rendered from the same artwork.
 
 ## Run it locally
 

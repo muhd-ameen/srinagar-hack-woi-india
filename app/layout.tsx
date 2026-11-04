@@ -1,15 +1,17 @@
 import type { Metadata, Viewport } from "next";
-import { Poppins } from "next/font/google";
+import { Ultra } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Nav } from "@/components/Nav";
 import { RevealObserver } from "@/components/RevealObserver";
 import { copy, site } from "@/content/site";
 import "./globals.css";
 
-const poppins = Poppins({
-  variable: "--font-poppins",
+// Stand-in for Mestiza Black, the display face in the brand guidelines. Body text uses
+// Helvetica Neue from the system (see --font-sans in globals.css).
+const display = Ultra({
+  variable: "--font-ultra",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
+  weight: "400",
   display: "swap",
 });
 
@@ -41,13 +43,13 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#ffffff",
+  themeColor: "#12c6e9",
   colorScheme: "light",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en-IN" className={poppins.variable} suppressHydrationWarning>
+    <html lang="en-IN" className={display.variable} suppressHydrationWarning>
       <head>
         {/* Marks JS as available so scroll fade-ins never hide content without it. */}
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
@@ -55,7 +57,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="flex min-h-screen flex-col">
         <a
           href="#main"
-          className="sr-only z-50 bg-secondary px-4 py-2 text-bg focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
+          className="btn sr-only z-50 px-4 py-2 focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
         >
           {copy.ui.skipLink}
         </a>
