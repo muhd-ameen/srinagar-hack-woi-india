@@ -11,7 +11,7 @@ export function Arrow({ className = "" }: Props) {
       height="16"
       fill="none"
       stroke="currentColor"
-      strokeWidth="2.25"
+      strokeWidth="1.5"
       className={className}
     >
       <path d="M2 8h11M9 4l4 4-4 4" />
@@ -29,7 +29,7 @@ export function ExternalArrow({ className = "" }: Props) {
       height="14"
       fill="none"
       stroke="currentColor"
-      strokeWidth="2.25"
+      strokeWidth="1.5"
       className={className}
     >
       <path d="M5 11l6-6M6 5h5v5" />

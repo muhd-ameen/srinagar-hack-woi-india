@@ -7,23 +7,27 @@ import { SectionHeading } from "../SectionHeading";
 
 export function WhatStays() {
   return (
-    <Section id="what-stays" tone="deep">
+    <Section id="what-stays">
       <SectionHeading id="what-stays" label={copy.stays.label} heading={copy.stays.heading}>
         <p>{copy.stays.intro}</p>
       </SectionHeading>
 
-      <ul className="mt-12 grid grid-cols-1 gap-4 md:mt-16 md:grid-cols-2">
-        {outcomes.map((outcome, i) => (
-          <li key={outcome} className="card flex items-baseline gap-5 px-5 py-5" data-reveal>
-            <span className="display w-8 shrink-0 text-xl">{String(i + 1).padStart(2, "0")}</span>
-            <span className="text-lg leading-snug font-bold md:text-xl">{outcome}</span>
-          </li>
-        ))}
-      </ul>
+      <div className="mt-14 grid grid-cols-12 gap-x-6 md:mt-20 lg:gap-x-8">
+        <ul className="col-span-12 grid grid-cols-1 gap-x-8 border-t border-line md:grid-cols-2 lg:col-span-9 lg:col-start-4">
+          {outcomes.map((outcome, i) => (
+            <li key={outcome} className="flex items-baseline gap-5 border-b border-line py-6" data-reveal>
+              <span className="label w-6 shrink-0">{String(i + 1).padStart(2, "0")}</span>
+              <span className="text-lg leading-snug font-normal md:text-xl">{outcome}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
 
       <Photo
         photo={images.stays}
-        sizes="(min-width: 1280px) 1200px, 100vw"
+        fade
+        bleed
+        sizes="100vw"
         className="mt-12 md:mt-16"
       />
     </Section>

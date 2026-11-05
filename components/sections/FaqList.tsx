@@ -12,11 +12,11 @@ export function FaqList({ items }: Props) {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <ul className="space-y-4">
+    <ul className="border-t border-line">
       {items.map((item, i) => {
         const isOpen = open === i;
         return (
-          <li key={item.question} className={`card overflow-hidden transition-colors duration-150 ${isOpen ? "fill-sun" : ""}`}>
+          <li key={item.question} className="border-b border-line">
             <h3>
               <button
                 type="button"
@@ -24,22 +24,24 @@ export function FaqList({ items }: Props) {
                 aria-expanded={isOpen}
                 aria-controls={`faq-a-${i}`}
                 onClick={() => setOpen(isOpen ? null : i)}
-                className="group flex w-full items-start justify-between gap-6 px-5 py-5 text-left md:px-7 md:py-6"
+                className="group flex w-full items-start justify-between gap-6 py-6 text-left"
               >
                 <span
-                  className="text-lg leading-snug font-bold md:text-xl"
+                  className={`text-lg leading-snug font-normal transition-colors duration-150 md:text-xl ${
+                    isOpen ? "text-secondary" : "group-hover:text-secondary"
+                  }`}
                 >
                   {item.question}
                 </span>
                 <svg
                   aria-hidden="true"
                   viewBox="0 0 16 16"
-                  width="32"
-                  height="32"
+                  width="16"
+                  height="16"
                   fill="none"
                   stroke="currentColor"
-                  strokeWidth="2.25"
-                  className="shrink-0 rounded-lg border-3 border-ink bg-paper p-1.5 transition-transform duration-150 group-hover:-rotate-6"
+                  strokeWidth="1.5"
+                  className="mt-1.5 shrink-0"
                 >
                   <path d="M2 8h12" />
                   <path d="M8 2v12" className={`origin-center transition-transform duration-200 ${isOpen ? "scale-y-0" : ""}`} />
@@ -56,7 +58,7 @@ export function FaqList({ items }: Props) {
               inert={!isOpen}
             >
               <div className="overflow-hidden">
-                <div className="max-w-[65ch] space-y-4 px-5 pb-6 text-base md:px-7 md:pb-7 md:text-lg">
+                <div className="max-w-[65ch] space-y-4 pr-10 pb-7 text-base text-muted md:text-lg">
                   {item.answer.map((paragraph) => (
                     <p key={paragraph.slice(0, 24)}>{paragraph}</p>
                   ))}

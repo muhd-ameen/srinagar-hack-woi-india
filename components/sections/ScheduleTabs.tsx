@@ -29,7 +29,7 @@ export function ScheduleTabs({ days }: Props) {
 
   return (
     <div>
-      <div role="tablist" aria-label={copy.ui.scheduleDays} className="flex flex-wrap gap-3">
+      <div role="tablist" aria-label={copy.ui.scheduleDays} className="flex flex-wrap gap-x-8 border-b border-line">
         {days.map((day, i) => {
           const selected = i === current;
           return (
@@ -46,11 +46,11 @@ export function ScheduleTabs({ days }: Props) {
               tabIndex={selected ? 0 : -1}
               onClick={() => setCurrent(i)}
               onKeyDown={onKeyDown}
-              className={`rounded-xl border-3 border-ink px-4 py-2 text-left transition-transform duration-150 ${
-                selected ? "bg-sun shadow-hard-sm" : "bg-paper hover:-translate-y-0.5"
+              className={`-mb-px border-b-2 pt-2 pb-4 text-left transition-colors duration-150 ${
+                selected ? "border-secondary text-fg" : "border-transparent text-muted hover:text-fg"
               }`}
             >
-              <span className="block text-lg font-bold">{day.day}</span>
+              <span className="block text-lg font-medium">{day.day}</span>
               <span className="block text-sm">{day.date}</span>
             </button>
           );
@@ -65,7 +65,7 @@ export function ScheduleTabs({ days }: Props) {
           aria-labelledby={`day-tab-${i}`}
           hidden={i !== current}
         >
-          <table className="card mt-6 w-full border-separate border-spacing-0 overflow-hidden text-left">
+          <table className="w-full border-collapse text-left">
             <caption className="sr-only">
               {day.day}, {day.date}
             </caption>
@@ -77,12 +77,12 @@ export function ScheduleTabs({ days }: Props) {
             </thead>
             <tbody>
               {day.sessions.map((session) => (
-                <tr key={`${session.time}-${session.title}`} className="align-top [&:not(:last-child)>*]:border-b-2 [&:not(:last-child)>*]:border-ink/15">
-                  <th scope="row" className="w-24 py-5 pr-6 pl-5 text-base font-bold tabular-nums sm:w-32 md:pl-7">
+                <tr key={`${session.time}-${session.title}`} className="border-b border-line align-top">
+                  <th scope="row" className="w-24 py-5 pr-6 text-base font-normal text-muted tabular-nums sm:w-32">
                     {session.time}
                   </th>
-                  <td className="py-5 pr-5">
-                    <span className="block text-lg font-bold">{session.title}</span>
+                  <td className="py-5">
+                    <span className="block text-lg font-normal">{session.title}</span>
                     {session.place && <span className="mt-1 block text-sm text-muted">{session.place}</span>}
                   </td>
                 </tr>

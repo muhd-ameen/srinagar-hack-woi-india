@@ -5,23 +5,41 @@ type Props = {
   photo: PhotoData;
   sizes: string;
   preload?: boolean;
+  grain?: boolean;
+  // Fade only the top and bottom edges (for full-width bands). Otherwise all four edges fade.
+  fade?: boolean;
+  // Run the image edge to edge across the viewport.
+  bleed?: boolean;
+  // Hard edges with small rounded corners, instead of fading into the page.
+  crisp?: boolean;
   // Tailwind aspect classes to crop the photo to a different shape, e.g. per breakpoint.
   aspect?: string;
-  // Tilt the frame slightly, like a sticker.
-  tilt?: "left" | "right";
   className?: string;
 };
 
-const tilts = { left: "md:-rotate-1", right: "md:rotate-1" };
+// An image at a fixed aspect ratio. By default its edges dissolve into the page background.
+export function Photo({
+  photo,
+  sizes,
+  preload = false,
+  grain = false,
+  fade = false,
+  bleed = false,
+  aspect,
+  crisp = false,
+  className = "",
+}: Props) {
+  const frame = [
+    "relative overflow-hidden",
+    crisp ? "rounded-[3px] bg-surface" : fade ? "fade-y" : "fade-edges",
+    grain ? "grain" : "",
+    bleed ? "mx-[calc(50%-50vw)]" : "",
+    aspect ?? "",
+  ].join(" ");
 
-// An image in a chunky sticker frame: ink outline, rounded corners and a hard shadow.
-export function Photo({ photo, sizes, preload = false, aspect, tilt, className = "" }: Props) {
   return (
     <figure className={className}>
-      <div
-        className={`card relative overflow-hidden ${tilt ? tilts[tilt] : ""} ${aspect ?? ""}`}
-        style={aspect ? undefined : { aspectRatio: photo.ratio }}
-      >
+      <div className={frame} style={aspect ? undefined : { aspectRatio: photo.ratio }}>
         <Image
           src={photo.src}
           alt={photo.alt}
@@ -29,7 +47,6 @@ export function Photo({ photo, sizes, preload = false, aspect, tilt, className =
           sizes={sizes}
           preload={preload}
           className="object-cover"
-          style={photo.focus ? { objectPosition: photo.focus } : undefined}
         />
       </div>
     </figure>

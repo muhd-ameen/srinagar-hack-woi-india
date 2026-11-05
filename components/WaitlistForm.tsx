@@ -43,7 +43,7 @@ export function WaitlistForm({ id, className = "" }: Props) {
   return (
     <div id={id} className={`scroll-mt-24 ${className}`}>
       {status === "done" ? (
-        <p role="status" className="card fill-green px-5 py-4 text-base font-bold">
+        <p role="status" className="border-l-2 border-secondary py-2 pl-4 text-base text-fg">
           {waitlist.success}
         </p>
       ) : (
@@ -63,7 +63,7 @@ export function WaitlistForm({ id, className = "" }: Props) {
             </label>
           </p>
 
-          <label htmlFor={inputId} className="label block">
+          <label htmlFor={inputId} className="label-muted block">
             {waitlist.label}
           </label>
           <div className="mt-3 flex flex-wrap gap-3">
@@ -76,12 +76,12 @@ export function WaitlistForm({ id, className = "" }: Props) {
               inputMode="email"
               placeholder={waitlist.placeholder}
               aria-describedby={noteId}
-              className="h-14 min-w-0 flex-[1_1_14rem] rounded-[0.875rem] border-3 border-ink bg-paper px-4 text-base text-ink placeholder:text-[#6b6455] focus:outline-3 focus:outline-offset-2 focus:outline-deep"
+              className="h-14 min-w-0 flex-[1_1_14rem] rounded-[3px] border border-line bg-bg px-4 text-base text-fg placeholder:text-muted focus:border-secondary"
             />
             <button
               type="submit"
               disabled={status === "sending"}
-              className="btn h-14 px-7 text-base disabled:cursor-wait"
+              className="inline-flex h-14 items-center justify-center rounded-[3px] bg-accent px-7 text-base font-medium whitespace-nowrap text-fg transition-colors duration-150 hover:bg-secondary hover:text-bg disabled:cursor-wait disabled:opacity-70"
             >
               {status === "sending" ? waitlist.sending : waitlist.button}
             </button>
@@ -89,7 +89,7 @@ export function WaitlistForm({ id, className = "" }: Props) {
           <p id={noteId} className="mt-3 text-sm text-muted">
             {waitlist.note}
           </p>
-          <p role="status" aria-live="polite" className="mt-2 text-sm font-bold text-fg empty:hidden">
+          <p role="status" aria-live="polite" className="mt-2 text-sm text-fg empty:hidden">
             {status === "error" ? (isDev ? waitlist.devError : waitlist.error) : ""}
           </p>
         </form>
